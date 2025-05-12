@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sweet Home Cake</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic styling for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Form styling */
+        .modal-content label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="date"],
+        .modal-content textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Important:  Include padding and border in the element's total width and height */
+        }
+
+        .modal-content button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-content button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+    </header>
+
+<!-- Main Content -->
+<section class="main-content">
+    <div class="cake-details">
+
+        <div class="cake-info">
+
+            <div class="cake-buttons">
+                <button id="orderBtn">Заказать такой же</button>
+                <!-- The Modal -->
+                <div id="orderModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Заказать торт</h2>
+                        <form id="orderForm">
+                            <label for="name">Имя:</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="phone">Контактный телефон:</label>
+                            <input type="text" id="phone" name="phone" required>
+
+                            <label for="email">Электронная почта:</label>
+                            <input type="text" id="email" name="email" required>
+
+                            <label for="date">Дата доставки:</label>
+                            <input type="date" id="date" name="date" required>
+
+                            <label for="location">Место доставки:</label>
+                            <input type="text" id="location" name="location" required>
+
+                            <label for="comment">Комментарий:</label>
+                            <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+
+                            <button type="submit">Отправить заказ</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer Section -->
+<footer class="footer">
+    </footer>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("orderModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("orderBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {  // Corrected comparison
+            modal.style.display = "none";
+        }
+    }
+
+    // Handle form submission
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form values
+        var name = document.getElementById('name').value;
+        var phone = document.getElementById('phone').value;
+        var email = document.getElementById('email').value;
+        var date = document.getElementById('date').value;
+        var location = document.getElementById('location').value;
+        var comment = document.getElementById('comment').value;
+
+        // You can now send this data to your server-side script using AJAX
+        console.log('Order Details:');
+        console.log('Name:', name);
+        console.log('Phone:', phone);
+        console.log('Email:', email);
+        console.log('Date:', date);
+        console.log('Location:', location);
+        console.log('Comment:', comment);
+
+        // For now, let's just close the modal after submission
+        modal.style.display = "none";
+        alert("Заказ отправлен!"); // Show confirmation (replace with a nicer notification)
+
+        //Here you'd add AJAX/fetch code to actually send the data.
+    });
+</script>
+
+</body>
+</html>

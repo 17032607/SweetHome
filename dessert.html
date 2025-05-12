@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Десерт</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="data.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="dessertName"></h1>
+    </header>
+    <section>
+        <div class="dessert-details">
+            <img src="" alt="Dessert Image" id="dessertImage">
+            <div class="dessert-info">
+                <p><strong>Бисквит:</strong> <span id="biscuit"></span></p>
+                <p><strong>Крем:</strong> <span id="cream"></span></p>
+                <p><strong>Наполнение:</strong> <span id="filling"></span></p>
+                <p><strong>Украшения:</strong> <span id="decoration"></span></p>
+                <p><strong>Вес:</strong> <span id="weight"></span> г.</p>
+                <p><strong>Стоимость:</strong> <span id="price"></span> р.</p>
+                <p><strong>Цена за 1 кг:</strong> <span id="pricePerKg"></span> р.</p>
+            </div>
+            <button id="editBtn">Редактировать наполнение</button>
+            <button id="orderBtn">Заказать такой же</button>
+        </div>
+    </section>
+
+    <script type="module">
+        import { getDessertById, saveOrder } from './data.js';
+
+        // Получаем ID десерта из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const dessertId = parseInt(urlParams.get('id'));
+
+        // Загружаем данные десерта
+        const dessert = getDessertById(dessertId);
+        if (dessert) {
+            document.getElementById('dessertImage').src = dessert.image;
+            document.getElementById('dessertName').innerText = dessert.name;
+            document.getElementById('biscuit').innerText = dessert.description.biscuit;
+            document.getElementById('cream').innerText = dessert.description.cream;
+            document.getElementById('filling').innerText = dessert.description.filling;
+            document.getElementById('decoration').innerText = dessert.description.decoration;
+            document.getElementById('weight').innerText = dessert.weight;
+            document.getElementById('price').innerText = dessert.price;
+            document.getElementById('pricePerKg').innerText = dessert.pricePerKg;
+        }
+
+        // Обработка кнопки "Заказать такой же"
+        document.getElementById('orderBtn').addEventListener('click', function() {
+            const orderData = {
+                name: prompt("Введите ваше имя:"),
+                phone: prompt("Введите ваш телефон:"),
+                email: prompt("Введите вашу электронную почту:"),
+                date: prompt("Введите дату доставки:"),
+                location: prompt("Введите место доставки:"),
+                comment: prompt("Введите комментарий:"),
+                dessertName: dessert.name
+            };
+            saveOrder(orderData);
+            alert('Заказ отправлен!');
+        });
+
+        // Обработка кнопки "Редактировать наполнение"
+        document.getElementById('editBtn').addEventListener('click', function() {
+            window.location.href = `constructor.html?id=${dessertId}`;
+        });
+    </script>
+</body>
+</html>

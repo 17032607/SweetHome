@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор тортов - Sweet Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Sweet Home Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#">Каталог</a>
+                        <ul class="dropdown">
+                            <li><a href="trifles.html">Трайфлы</a></li>
+                            <li><a href="cakes.html">Торты</a></li>
+                            <li><a href="cupcakes.html">Капкейки</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="constructor.html">Конструктор тортов</a></li>
+                    <li><a href="delivery.html">Доставка и оплата</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="constructor">
+            
+            <h1>Конструктор тортов</h1>
+            <input type="hidden" id="dessertId">
+            
+            <div class="dessert-type">
+                <label><input type="radio" name="dessert" value="cake" id="cakeType">Торт</label>
+                <label><input type="radio" name="dessert" value="cupcake" id="cupcakeType">Капкейк</label>
+                <label><input type="radio" name="dessert" value="trifle" id="trifleType">Трайфл</label>
+            </div>
+
+            <div class="constructor-form">
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="biscuit">Бисквит:</label>
+                        <select id="biscuit">
+                            <option value="red-velvet">Красный бархат</option>
+                            <option value="chocolate">Шоколадный</option>
+                            <option value="banana">Банановый</option>
+                            <option value="vanilla">Ванильный</option>
+                            <option value="oreo">Орео шоколадный</option>
+                            <option value="black-forest">Черный лес</option>
+                            <option value="lavender">Лавандовый</option>
+                            <option value="rainbow">Радуга</option>
+                            <option value="milk-girl">Молочная девочка</option>
+                            <option value="raspberry">Малиновый</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cream">Крем:</label>
+                        <select id="cream">
+                            <option value="truffle">Трюфельный</option>
+                            <option value="mascarpone">На основе маскарпоне</option>
+                            <option value="custard">Заварной крем</option>
+                            <option value="cream-cheese">Крем чиз</option>
+                            <option value="chocolate-cream-cheese">Шоколадный крем чиз</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filling">Наполнение:</label>
+                        <select id="filling">
+                            <option value="banana">Банан</option>
+                            <option value="strawberry">Клубника</option>
+                            <option value="berry-layer">Прослойка из ягод</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="decoration">Украшения:</label>
+                        <select id="decoration">
+                            <option value="gingerbread">Пряники</option>
+                            <option value="chocolate-figures">Шоколадные фигурки</option>
+                            <option value="berries">Ягоды</option>
+                            <option value="lollipops">Леденцы</option>
+                            <option value="sugar-paper">Печать на сахарной бумаге</option>
+                        </select>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="date">Дата:</label>
+                        <input type="date" id="date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Комментарий:</label>
+                        <textarea id="comment" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <div class="image-slider-container">
+                        <div class="image-slider">
+                            <!-- Изображения будут добавлены сюда через JavaScript -->
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-button" id="prevImage">&lt;</button>
+                            <button class="slider-button" id="nextImage">&gt;</button>
+                        </div>
+                    </div>
+                
+                
+                    <button class="order-button" id="submitOrder">Заказать</button>
+                </div>
+                </div>
+                </section>
+                </main>
+                
+                <style>
+                    .image-slider-container {
+                        position: relative;
+                        width: 500px; /* Задайте желаемую ширину */
+                        height: 500px; /* Задайте желаемую высоту */
+                        overflow: hidden; /* Очень важно для скрытия изображений за пределами контейнера */
+                    }
+                
+                 
+                    .image-slider img {
+                        width: 100%; /* Каждое изображение занимает ширину контейнера */
+                        height: 100%;
+                        object-fit: cover; /* Обрезаем или масштабируем изображения для заполнения */
+                    }
+                
+                    .slider-controls {
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        right: 0;
+                        display: flex;
+                        justify-content: space-between;
+                        transform: translateY(-50%);
+                        padding: 0 10px;
+                    }
+                
+                    .slider-button {
+                        background: rgba(0, 0, 0, 0.5);
+                        color: white;
+                        border: none;
+                        padding: 5px 10px;
+                        cursor: pointer;
+                        border-radius: 5px;
+                    }
+                    
+                    .image-slider {
+                        display: flex;
+                        transition: transform 0.5s ease-in-out; /* Изначально устанавливаем transition */
+                        width: 100%;
+                        height: 100%;
+                    }
+                    
+                    /* Этот класс добавляется/удаляется для запуска анимации */
+                    .image-slider.animating {
+                        transition: transform 0.5s ease-in-out; /* Гарантируем, что transition установлен */
+                    }
+                    
+                </style>
+                <script type="module">
+                    import { getDessertById, saveOrder, desserts } from './data.js';
+                    
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const dessertId = urlParams.get('id');
+                    
+                    const imageSlider = document.querySelector('.image-slider');
+                    const prevImageButton = document.getElementById('prevImage');
+                    const nextImageButton = document.getElementById('nextImage');
+                    let currentImageIndex = 0;
+                    let isAnimating = false;
+                    
+                    function populateImageSlider(desserts) {
+                        imageSlider.innerHTML = '';
+                        desserts.forEach(dessert => {
+                            const img = document.createElement('img');
+                            img.src = dessert.image;
+                            img.alt = dessert.name;
+                            imageSlider.appendChild(img);
+                        });
+                        if (desserts.length > 0) {
+                            showImage(0);
+                        }
+                        updateSliderWidth(desserts.length);
+                    }
+                    
+                    function showImage(index) {
+                        if (isAnimating) return;
+                        isAnimating = true;
+                    
+                        // Зацикливание слайдера
+                        if (index < 0) {
+                            currentImageIndex = desserts.length - 1;
+                        } else if (index >= desserts.length) {
+                            currentImageIndex = 0;
+                        } else {
+                            currentImageIndex = index;
+                        }
+                    
+                        const translateX = -currentImageIndex * 100 + '%';
+                    
+                        imageSlider.classList.add('animating');
+                        imageSlider.style.transform = 'translateX(' + translateX + ')';
+                    
+                        setTimeout(() => {
+                            imageSlider.classList.remove('animating');
+                            isAnimating = false;
+                        }, 500);
+                    }
+                    
+                    function updateSliderWidth(numImages) {
+                        imageSlider.style.width = (numImages * 100) + '%';
+                    }
+                    
+                    populateImageSlider(desserts);
+                    
+                    prevImageButton.addEventListener('click', () => {
+                        showImage(currentImageIndex - 1);
+                    });
+                    
+                    nextImageButton.addEventListener('click', () => {
+                        showImage(currentImageIndex + 1);
+                    });
+                    
+                    if (dessertId) {
+                        console.log('Выбран десерт с ID:', dessertId);
+                    }
+                    if (dessertId) {
+                        const dessert = getDessertById(parseInt(dessertId));
+                        if (dessert) {
+                            document.getElementById('dessertId').value = dessert.id;
+                            document.querySelector(`input[value="${dessert.category}"]`).checked = true;
+                            document.getElementById('biscuit').value = dessert.description.biscuit;
+                            document.getElementById('cream').value = dessert.description.cream;
+                            document.getElementById('filling').value = dessert.description.filling;
+                            document.getElementById('decoration').value = dessert.description.decoration;
+                        }
+                    }
+                    
+                    // Обработка заказа
+                    document.getElementById('submitOrder').addEventListener('click', function() {
+                        const orderData = {
+                            name: prompt("Введите ваше имя:"),
+                            phone: prompt("Введите ваш телефон:"),
+                            email: prompt("Введите вашу почту:"),
+                            date: document.getElementById('date').value,
+                            location: prompt("Введите адрес доставки:"),
+                            comment: document.getElementById('comment').value,
+                            dessertName: "Кастомный торт"
+                        };
+                    
+                        if (orderData.name && orderData.phone && orderData.email) {
+                            saveOrder(orderData);
+                            alert('Заказ отправлен на ketrin.alex04@gmail.com!');
+                        }
+                    });
+                    </script>
+    <footer>
+        <div class="footer-container">  <!-- Оборачиваем футер в контейнер -->
+            <div class="contact-info">
+                <img src="phone.png" alt="Телефон">
+                <p>Контакты</p>
+                <p>+7 960 897 45 36</p>
+                <p>vk.com/id135398370</p>
+            </div>
+            <div class="address">
+                <img src="map.png" alt="Адрес">
+                <p>Адрес</p>
+                <p>Ярыгинская набережная, дом 28</p>
+            </div>
+            <div class="hours">
+                <img src="time.png" alt="Время работы">
+                <p>Время работы</p>
+                <p>С 08:00 до 20:00</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
